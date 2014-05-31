@@ -11,13 +11,13 @@ import javax.swing.*;
 
 public class TutorFrame implements ActionListener{
 	
-	private JFrame frame = new JFrame();
+	private JFrame frame;
 	private JButton begin;
 	
 	
 	//constructing the initial frame
 	public TutorFrame() {
-		
+		frame = new JFrame();
 		frame.setSize(400,200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -32,31 +32,40 @@ public class TutorFrame implements ActionListener{
 		welcome.setFont(MyFont);
 		welcome.setHorizontalTextPosition(JLabel.CENTER);
 		
+		JPanel bottom = new JPanel(new BorderLayout());
+		JButton add = new JButton("Add");
+		bottom.add(add, BorderLayout.WEST);
+		
 		frame.add(start, BorderLayout.CENTER);
 		frame.add(welcome, BorderLayout.NORTH);
+		frame.add(bottom, BorderLayout.SOUTH);
 		frame.setVisible(true);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		if (e.getSource() == begin) {
-			frame.removeAll();
-			frame.setVisible(false);
-			frame.dispose();
-			JFrame tutor = new JFrame();
-			tutor.setSize(800, 800);
-			tutor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			//Container with Button and textbar
-			JButton submit = new JButton("Submit");
-			JTextField answer = new JTextField("Answer Here");
-			JPanel inputBar = new JPanel( new FlowLayout() );
-			inputBar.add(answer);
-			inputBar.add(submit);
-			
-			tutor.add(inputBar, BorderLayout.NORTH);
-			tutor.setVisible(true);
-			
+		if (e.getSource() == begin) { //clicking the begin button
+			setupFrame();
 		}
+	}
+	
+	public void setupFrame() {
+		
+		frame.removeAll();
+		frame.dispose();
+		frame = new JFrame();
+		frame.setSize(800, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//Container with Button and textbar
+		JButton submit = new JButton("Submit");
+		JTextField answer = new JTextField("Definition Here");
+		JPanel inputBar = new JPanel( new FlowLayout() );
+		inputBar.add(answer);
+		inputBar.add(submit);
+		
+		frame.add(inputBar, BorderLayout.CENTER);
+		frame.setVisible(true);
+		
 	}
 
 }
