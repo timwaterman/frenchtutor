@@ -12,7 +12,7 @@ import javax.swing.*;
 public class TutorFrame implements ActionListener{
 	
 	private JFrame frame;
-	private JButton begin;
+	private JButton begin, add;
 	
 	
 	//constructing the initial frame
@@ -33,7 +33,8 @@ public class TutorFrame implements ActionListener{
 		welcome.setHorizontalTextPosition(JLabel.CENTER);
 		
 		JPanel bottom = new JPanel(new BorderLayout());
-		JButton add = new JButton("Add");
+		add = new JButton("Add");
+		add.addActionListener(this);
 		bottom.add(add, BorderLayout.WEST);
 		
 		frame.add(start, BorderLayout.CENTER);
@@ -46,6 +47,10 @@ public class TutorFrame implements ActionListener{
 		
 		if (e.getSource() == begin) { //clicking the begin button
 			setupFrame();
+		}
+		if (e.getSource() == add) {
+			//do the setup
+			//System.out.println("Oh so you want to add?");
 		}
 	}
 	
