@@ -1,6 +1,5 @@
 package frenchtutor;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,14 +11,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.JList;
 import javax.swing.JComboBox;
+import java.io.*;
 
 public class FrenchTutor extends JFrame {
 
-	//EDIT
+
 	private JPanel contentPane;
 	private JPanel MainMenu = new JPanel();;
 	private final JPanel DefPanel = new JPanel();
@@ -37,6 +35,7 @@ public class FrenchTutor extends JFrame {
 	private JTextField nousText;
 	private JTextField vousText;
 	private JTextField ilsText;
+	private File dataFile; //where to store the data that's being read
 
 	/**
 	 * Launch the application.
@@ -219,6 +218,7 @@ public class FrenchTutor extends JFrame {
 		AddVerbPanel.setLayout(null);
 		
 		verbText = new JTextField();
+		verbText.setText("aimer");
 		verbText.setBounds(67, 30, 134, 28);
 		AddVerbPanel.add(verbText);
 		verbText.setColumns(10);
@@ -238,36 +238,42 @@ public class FrenchTutor extends JFrame {
 		AddVerbPanel.add(btnBack);
 		
 		jeText = new JTextField();
+		jeText.setText("aime");
 		jeText.setBounds(67, 88, 134, 28);
 		AddVerbPanel.add(jeText);
 		jeText.setColumns(10);
 		
 		tuText = new JTextField();
+		tuText.setText("aimes");
 		tuText.setBounds(67, 139, 134, 28);
 		AddVerbPanel.add(tuText);
 		tuText.setColumns(10);
 		
 		ilText = new JTextField();
+		ilText.setText("aime");
 		ilText.setBounds(67, 191, 134, 28);
 		AddVerbPanel.add(ilText);
 		ilText.setColumns(10);
 		
 		nousText = new JTextField();
+		nousText.setText("aimons");
 		nousText.setBounds(300, 88, 134, 28);
 		AddVerbPanel.add(nousText);
 		nousText.setColumns(10);
 		
 		vousText = new JTextField();
+		vousText.setText("aimez");
 		vousText.setBounds(300, 139, 134, 28);
 		AddVerbPanel.add(vousText);
 		vousText.setColumns(10);
 		
 		ilsText = new JTextField();
+		ilsText.setText("aiment");
 		ilsText.setBounds(300, 191, 134, 28);
 		AddVerbPanel.add(ilsText);
 		ilsText.setColumns(10);
 		
-		JComboBox tenseBox = new JComboBox();
+		final JComboBox tenseBox = new JComboBox();
 		tenseBox.setBounds(300, 32, 134, 27);
 		tenseBox.addItem("Present");
 		tenseBox.addItem("Passe Compose");
@@ -276,6 +282,46 @@ public class FrenchTutor extends JFrame {
 		JLabel lblTense = new JLabel("Tense");
 		lblTense.setBounds(248, 36, 40, 16);
 		AddVerbPanel.add(lblTense);
+		
+		JLabel jeLbl = new JLabel("Je/j'");
+		jeLbl.setBounds(30, 94, 34, 16);
+		AddVerbPanel.add(jeLbl);
+		
+		JLabel tuLbl = new JLabel("Tu");
+		tuLbl.setBounds(30, 145, 34, 16);
+		AddVerbPanel.add(tuLbl);
+		
+		JLabel ilLbl = new JLabel("Il/Elle");
+		ilLbl.setBounds(18, 197, 46, 16);
+		AddVerbPanel.add(ilLbl);
+		
+		JLabel nousLbl = new JLabel("Nous");
+		nousLbl.setBounds(254, 94, 34, 16);
+		AddVerbPanel.add(nousLbl);
+		
+		JLabel vousLbl = new JLabel("Vous");
+		vousLbl.setBounds(254, 145, 34, 16);
+		AddVerbPanel.add(vousLbl);
+		
+		JLabel ilsLbl = new JLabel("Ils/Elles");
+		ilsLbl.setBounds(237, 197, 51, 16);
+		AddVerbPanel.add(ilsLbl);
+		
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Verb: " + verbText.getText());
+				System.out.println("Tense: " + tenseBox.getSelectedItem().toString());
+				System.out.println(jeText.getText());
+				System.out.println(tuText.getText());
+				System.out.println(ilText.getText());
+				System.out.println(nousText.getText());
+				System.out.println(vousText.getText());
+				System.out.println(ilsText.getText());
+			}
+		});
+		btnAdd.setBounds(28, 233, 117, 29);
+		AddVerbPanel.add(btnAdd);
 		
 		
 	}
